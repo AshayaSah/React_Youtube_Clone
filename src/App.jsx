@@ -1,12 +1,20 @@
-import React from 'react'
-import Navbar from './Components/Navbar/Navbar'
+import React from "react";
+import Navbar from "./Components/Navbar/Navbar";
+import { Route, Routes } from "react-router-dom";
+import Home from './Pages/Home/Home'
+import Video from './Pages/Video/Video'
+
 
 const App = () => {
   return (
-    <>
-      <Navbar></Navbar>
-    </>
-  )
-}
+    <div>
+      <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home></Home>} />
+          <Route path="/video/:categoryId/:videoId" element={<Video></Video>} />
+        </Routes>
+    </div>
+  );
+};
 
-export default App
+export default App;
