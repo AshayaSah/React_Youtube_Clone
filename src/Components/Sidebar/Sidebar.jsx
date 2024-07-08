@@ -15,43 +15,43 @@ import tom from "../../assets/tom.png";
 import megan from "../../assets/megan.png";
 import cameron from "../../assets/cameron.png";
 
-const Sidebar = ({sidebar}) => {
+const Sidebar = ({sidebar, category, setCategory}) => {
   return (
     <div className={`sidebar ${sidebar?"":"small-sidebar"}`}>
       <div className="shortcut-links">
-        <div className="side-link">
+        <div className={`side-link ${category===0? "active": ""}`} onClick={() => setCategory(0)}>
           <img src={home} alt="home" />
           <p>Home</p>
         </div>
-        <div className="side-link">
+        <div className={`side-link ${category===0? "active": ""}`} onClick={() => setCategory(y0raz_AwRY4)}>
           <img src={game_icon} alt="gaming" />
           <p>Gaming</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => setCategory(gp6RygRVpUU)}>
           <img src={automobiles} alt="automobiles" />
           <p>Automobiles</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => setCategory(0)}>
           <img src={sports} alt="sports" />
           <p>Sports</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => setCategory(0)}>
           <img src={entertainment} alt="entertainment" />
           <p>Entertainment</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => setCategory(0)}>
           <img src={tech} alt="tech" />
           <p>Tech</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => setCategory(H58vbez_m4E)}>
           <img src={music} alt="music" />
           <p>Music</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => setCategory(Z9OuuSvWPKU)}>
           <img src={blogs} alt="blogs" />
           <p>Blogs</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => setCategory(zlNz8BLEtWY)}>
           <img src={news} alt="news" />
           <p>News</p>
         </div>
