@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Playvideo.css";
 import video1 from "../../assets/video.mp4";
 import like from "../../assets/like.png";
@@ -7,27 +7,46 @@ import share from "../../assets/share.png";
 import save from "../../assets/save.png";
 import jack from "../../assets/jack.png";
 import user_profile from "../../assets/user_profile.jpg";
+import { API_KEY, viewsConverter } from "../../data";
+import moment from "moment";
 
-const Playvideo = ({videoId}) => {
-  const [apiData,setApiData] = useState(null);
+const Playvideo = ({ videoId }) => {
+  const [apiData, setApiData] = useState(null);
 
   const fetchVideoData = async () => {
-    
-  }
+    const videoDetailesUrl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
+
+    await fetch(videoDetailesUrl)
+      .then((res) => res.json())
+      .then((data) => setApiData(data.items[0]));
+  };
+
+  useEffect(() => {
+    fetchVideoData();
+  }, []);
 
   return (
     <div className="play-video">
-      <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <h3>Best channel t learn the React JS web development</h3>
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+      <h3>{apiData ? apiData.snippet.title : "Title Here"}</h3>
       <div className="play-video-info">
-        <p>1525 Views &bull; 2 days ago</p>
+        <p>
+          {apiData ? viewsConverter(apiData.statistics.viewCount) : "0"} Views
+          &bull; {apiData ? moment(apiData.snippet.publishedAt).fromNow() : ""}
+        </p>
         <div>
           <span>
             <img src={like} alt="" />
-            124
+            {apiData? viewsConverter(apiData.statistics.likeCount) : "0"}
           </span>
           <span>
-            <img src={dislike} alt="" />2
+            <img src={dislike} alt="" />
           </span>
           <span>
             <img src={share} alt="" />
@@ -43,28 +62,30 @@ const Playvideo = ({videoId}) => {
       <div className="publisher">
         <img src={jack} alt="" />
         <div>
-          <p>GreatStack</p>
-          <spam>1M Subscribers</spam>
+          <p>{apiData? apiData.snippet.channelTitle: ""}</p>
+          <span>1M Subscribers</span>
         </div>
         <button>Subscribed</button>
       </div>
       <div className="vid-description">
-        <p>Very easy and learning is always the fun</p>
-        <p>Subscribe to stay updated and learn more and more!</p>
-        <h4>130 Comments</h4>
+        <p>{apiData? apiData.snippet.description.slice(0,250) : ""}</p>
+        <h4>{apiData? viewsConverter(apiData.statistics.commentCount) : "0"} Comments</h4>
         <div className="comments">
           <img src={user_profile} alt="" />
           <div>
             <h3>
               Jack Nicholson <span>1 day ago</span>
             </h3>
-            <p>A global computer network that workes with every one to make their ay special with all the love and support we are all here and there to make the days of everyone awesome.</p>
+            <p>
+              A global computer network that workes with every one to make their
+              ay special with all the love and support we are all here and there
+              to make the days of everyone awesome.
+            </p>
             <div className="comment-action">
               <img src={like} alt="" />
               <span>244</span>
               <img src={dislike} alt="" />
             </div>
-    
           </div>
         </div>
         <div className="comments">
@@ -73,13 +94,16 @@ const Playvideo = ({videoId}) => {
             <h3>
               Jack Nicholson <span>1 day ago</span>
             </h3>
-            <p>A global computer network that workes with every one to make their ay special with all the love and support we are all here and there to make the days of everyone awesome.</p>
+            <p>
+              A global computer network that workes with every one to make their
+              ay special with all the love and support we are all here and there
+              to make the days of everyone awesome.
+            </p>
             <div className="comment-action">
               <img src={like} alt="" />
               <span>244</span>
               <img src={dislike} alt="" />
             </div>
-    
           </div>
         </div>
         <div className="comments">
@@ -88,13 +112,16 @@ const Playvideo = ({videoId}) => {
             <h3>
               Jack Nicholson <span>1 day ago</span>
             </h3>
-            <p>A global computer network that workes with every one to make their ay special with all the love and support we are all here and there to make the days of everyone awesome.</p>
+            <p>
+              A global computer network that workes with every one to make their
+              ay special with all the love and support we are all here and there
+              to make the days of everyone awesome.
+            </p>
             <div className="comment-action">
               <img src={like} alt="" />
               <span>244</span>
               <img src={dislike} alt="" />
             </div>
-    
           </div>
         </div>
         <div className="comments">
@@ -103,13 +130,16 @@ const Playvideo = ({videoId}) => {
             <h3>
               Jack Nicholson <span>1 day ago</span>
             </h3>
-            <p>A global computer network that workes with every one to make their ay special with all the love and support we are all here and there to make the days of everyone awesome.</p>
+            <p>
+              A global computer network that workes with every one to make their
+              ay special with all the love and support we are all here and there
+              to make the days of everyone awesome.
+            </p>
             <div className="comment-action">
               <img src={like} alt="" />
               <span>244</span>
               <img src={dislike} alt="" />
             </div>
-    
           </div>
         </div>
         <div className="comments">
@@ -118,13 +148,16 @@ const Playvideo = ({videoId}) => {
             <h3>
               Jack Nicholson <span>1 day ago</span>
             </h3>
-            <p>A global computer network that workes with every one to make their ay special with all the love and support we are all here and there to make the days of everyone awesome.</p>
+            <p>
+              A global computer network that workes with every one to make their
+              ay special with all the love and support we are all here and there
+              to make the days of everyone awesome.
+            </p>
             <div className="comment-action">
               <img src={like} alt="" />
               <span>244</span>
               <img src={dislike} alt="" />
             </div>
-    
           </div>
         </div>
       </div>
