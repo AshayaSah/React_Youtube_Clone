@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Playvideo.css";
 import video1 from "../../assets/video.mp4";
 import like from "../../assets/like.png";
@@ -8,10 +8,16 @@ import save from "../../assets/save.png";
 import jack from "../../assets/jack.png";
 import user_profile from "../../assets/user_profile.jpg";
 
-const Playvideo = () => {
+const Playvideo = ({videoId}) => {
+  const [apiData,setApiData] = useState(null);
+
+  const fetchVideoData = async () => {
+    
+  }
+
   return (
     <div className="play-video">
-      <video src={video1} controls autoPlay muted></video>
+      <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       <h3>Best channel t learn the React JS web development</h3>
       <div className="play-video-info">
         <p>1525 Views &bull; 2 days ago</p>
