@@ -10,7 +10,7 @@ nav {
 
 .nav-left .menu-icon {
     width: 22px;
-    margin-right: 25px;
+    margin-right: 20px;
 }
 
 .nav-left .logo {
@@ -44,4 +44,38 @@ nav {
 .nav-right .user-icon {
     width: 35px;
     border-radius: 50%;
+}
+
+@media (max-width: 900px) {
+    .menu-icon{
+        display: none;
+    }
+    .nav-middle .search-box input {
+        width: 200px;
+    }
+}
+
+@media (max-width: 599px) {
+    .nav-left .logo {
+        width: 90px;
+    }
+
+    .nav-right img{
+        display: none;
+        margin-right: 5px;
+    }
+
+    .nav-right .user-icon{
+        display: block;
+        width: 30px;
+    }
+    .nav-right .notification-icon{
+        display: block;
+        width: 25px;
+        margin-top: 5px;
+    }
+
+    .nav-middle .search-box input {
+        width: 100px;
+    }
 }
